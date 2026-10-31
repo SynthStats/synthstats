@@ -1,0 +1,9 @@
+# PyTorch optimizer configuration
+#
+# Updates policy + logZ parameters using PyTorch optimizers.
+
+optim:
+  policy_lr: 1e-5
+  logZ_lr: ${objective.logZ_lr}
+  weight_decay: 0.0
+  max_grad_norm: 1.0

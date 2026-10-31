@@ -1,0 +1,28 @@
+# shared base for PyMC statistical modelling environments
+_target_: synthstats.envs.task_runtime_env.TaskRuntimeEnv
+
+# logical statistical modelling environment identifier
+name: ???
+max_steps: 20
+
+task:
+  _target_: synthstats.tasks.statistical_modeling.task.StatisticalModelingTask
+  env_name: ???
+  max_steps: 20
+
+codec:
+  _target_: synthstats.runtime.codecs.NativeToolCallingCodec
+
+executors:
+  pymc:
+    _target_: synthstats.executors.pymc_sandbox.PyMCExecutor
+
+judge:
+  _target_: synthstats.judges.likelihood.LikelihoodJudge
+  beta: 1.0
+  loo_gate_mode: strict
+
+config:
+  _target_: synthstats.envs.task_runtime_env.TaskRuntimeEnvConfig
+  evaluation_seed: ${seed}
+  max_turns: 20

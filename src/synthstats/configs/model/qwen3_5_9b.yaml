@@ -1,0 +1,5 @@
+# Qwen3.5-9B - Mid-range model
+# 9B params, 262K context
+name: Qwen/Qwen3.5-9B
+dtype: bfloat16
+device: ${device}

@@ -1,0 +1,37 @@
+# @package hydra.launcher
+# SLURM launcher configuration
+# Usage: synthstats-train hydra/launcher=slurm logging=wandb
+
+_target_: hydra_plugins.hydra_submitit_launcher.submitit_launcher.SlurmLauncher
+
+# SLURM job parameters
+partition: short
+cpus_per_task: 8
+mem_gb: 32
+timeout_min: 720  # 12 hours
+gres: gpu:v100:1
+tasks_per_node: 1
+nodes: 1
+
+# Output directory for submitit logs
+submitit_folder: ${oc.env:SYNTHSTATS_PROJECT_ROOT,.}/logs/.submitit/%j
+
+# Setup commands run before job starts
+setup:
+  - "module purge"
+  - "module load CUDA/12.1.1"
+  - "if [ -n \"$PYTHON_MODULE\" ]; then module load \"$PYTHON_MODULE\"; fi"
+  - "if [ ! -d \"${oc.env:SYNTHSTATS_PROJECT_ROOT,.}/venvs/synthstats\" ]; then echo \"Missing project venv at ${oc.env:SYNTHSTATS_PROJECT_ROOT,.}/venvs/synthstats.\" >&2; exit 1; fi"
+  - "source ${oc.env:SYNTHSTATS_PROJECT_ROOT,.}/venvs/synthstats/bin/activate"
+  - "python -c 'import sys; raise SystemExit(\"SynthStats project venv must use Python 3.12+ (pyproject requires >=3.12,<3.14)\") if not ((3, 12) <= sys.version_info[:2] < (3, 14)) else None'"
+  - "export HF_HOME=${oc.env:SYNTHSTATS_PROJECT_ROOT,.}/huggingface"
+  - "export TORCH_HOME=${oc.env:SYNTHSTATS_PROJECT_ROOT,.}/torch"
+  - "if [ -z \"$WANDB_MODE\" ]; then export WANDB_MODE=offline; fi"
+  - "export WANDB_DIR=${oc.env:SYNTHSTATS_PROJECT_ROOT,.}/wandb"
+
+# Sweep parallelism (how many jobs to run concurrently)
+array_parallelism: 10
+
+# Signal handling for graceful shutdown
+signal_delay_s: 120
+max_num_timeout: 2

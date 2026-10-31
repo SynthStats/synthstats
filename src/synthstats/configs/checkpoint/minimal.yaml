@@ -1,0 +1,9 @@
+# minimal checkpoint
+#
+# For backends that manage their own state (SkyRL, Tinker).
+# Only saves step counter and metrics.
+
+save_dir: checkpoints
+every_steps: 50
+keep_last: 3
+resume_from: null

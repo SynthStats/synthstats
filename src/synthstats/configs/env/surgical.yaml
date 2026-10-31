@@ -1,0 +1,6 @@
+defaults:
+  - _statistical_modeling_base
+
+name: surgical
+task:
+  env_name: surgical

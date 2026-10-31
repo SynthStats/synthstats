@@ -1,0 +1,22 @@
+version = "1.0"
+
+[metadata]
+author_name = "SynthStats"
+author_email = "noreply@synthstats.local"
+difficulty_explanation = "Interactive Bayesian model discovery for the eight schools hierarchical benchmark."
+category = "probabilistic-programming"
+tags = ["bayesian", "hierarchical-modeling", "pymc", "synthstats"]
+
+[verifier]
+timeout_sec = 120.0
+
+[agent]
+timeout_sec = 300.0
+
+[environment]
+build_timeout_sec = 600.0
+docker_image = "synthstats-harbor-e2e:eight_schools"
+cpus = 2
+memory_mb = 4096
+storage_mb = 4096
+allow_internet = true

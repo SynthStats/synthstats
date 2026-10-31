@@ -1,0 +1,5 @@
+# Qwen3.5-0.8B - Fast model for testing and development
+# 800M params, 262K context, instruct by default (no -Instruct suffix)
+name: Qwen/Qwen3.5-0.8B
+dtype: bfloat16
+device: ${device}

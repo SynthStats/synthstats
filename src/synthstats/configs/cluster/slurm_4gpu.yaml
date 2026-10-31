@@ -1,0 +1,23 @@
+# @package _global_
+# 4-GPU SLURM cluster overrides
+# Usage: uv run python -m synthstats.cli.train +cluster=slurm_4gpu
+
+# SYNTHSTATS_PROJECT_ROOT contains the source checkout and runtime storage.
+data_dir: ${oc.env:SYNTHSTATS_PROJECT_ROOT,.}/synthstats/data
+run:
+  output_dir: ${oc.env:SYNTHSTATS_PROJECT_ROOT,.}/checkpoints/${now:%Y-%m-%d_%H-%M-%S}
+
+# W&B project configuration
+logging:
+  project: synthstats
+  entity: null
+  name: null
+
+# Harbor+SkyRL trainer adjustments for GPU
+runner:
+  trainer:
+    train_batch_size: 4
+    micro_train_batch_size_per_gpu: 1
+    ckpt_interval: 100
+
+device: cuda

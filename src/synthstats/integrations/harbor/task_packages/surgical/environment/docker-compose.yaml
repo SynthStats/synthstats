@@ -1,0 +1,5 @@
+services:
+  main:
+    pull_policy: never
+    cap_add: [SYS_ADMIN]
+    security_opt: [seccomp=unconfined, apparmor=unconfined, systempaths=unconfined]

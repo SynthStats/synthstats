@@ -1,0 +1,6 @@
+defaults:
+  - _lazyppl_base
+
+name: lazyppl_peregrines
+task:
+  env_name: peregrines

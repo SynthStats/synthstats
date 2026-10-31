@@ -1,0 +1,6 @@
+defaults:
+  - _lazyppl_base
+
+name: lazyppl_eight_schools
+task:
+  env_name: eight_schools

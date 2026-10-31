@@ -1,0 +1,33 @@
+# SynthStats training configuration
+#
+# Top-level config for unified training entrypoint.
+#
+# Usage:
+#   synthstats-train env=dugongs policy=hf_qwen3_5_0_8b
+
+defaults:
+  - train_schema
+  - runner: skyrl_harbor
+  - backend: vllm
+  - env: dugongs
+  - optional judge: null
+  - policy: hf_qwen3_5_0_8b
+  - objective: tb
+  - learner: local
+  - logging: stdout
+  - checkpoint: torch_full
+  - _self_
+
+seed: 42
+device: auto
+
+run:
+  name: ${now:%Y-%m-%d_%H-%M-%S}
+  output_dir: runs/${run.name}
+
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: ${run.output_dir}
+  output_subdir: null

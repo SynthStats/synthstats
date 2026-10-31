@@ -1,0 +1,4 @@
+# Explicit verifier-owned judge override.
+_target_: synthstats.judges.likelihood.LikelihoodJudge
+beta: 1.0
+loo_gate_mode: strict

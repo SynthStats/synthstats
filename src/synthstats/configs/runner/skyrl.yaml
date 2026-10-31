@@ -1,0 +1,51 @@
+# SkyRL distributed training via BasePPOExp + GFlowNetTrainer.
+# Requires Linux + `uv sync --extra skyrl`.
+
+type: skyrl
+
+# GFlowNet-specific
+logZ_init: ${objective.logZ_init}
+logZ_lr: ${objective.logZ_lr}
+
+# SkyRL trainer config
+trainer:
+  algorithm:
+    policy_loss_type: gfn_tb
+    advantage_estimator: tb_log_reward
+    max_seq_len: 4096
+
+  policy:
+    language_model_only: true
+    model:
+      path: Qwen/Qwen3.5-0.8B
+
+  epochs: 1
+  train_batch_size: 4
+  policy_mini_batch_size: 4
+  micro_train_batch_size_per_gpu: 1
+  update_epochs_per_batch: 1
+  strategy: fsdp
+  eval_before_train: false
+  eval_interval: 100
+  ckpt_interval: 100
+  ckpt_path: ${run.output_dir}/checkpoints
+  export_path: ${run.output_dir}/export
+
+  placement:
+    colocate_all: true
+    policy_num_nodes: 1
+    policy_num_gpus_per_node: 1
+
+environment:
+  env_class: synthstats-task-runtime-v0
+
+data:
+  train_data: []
+  val_data: []
+
+generator:
+  inference_engine:
+    backend: ${backend}
+    language_model_only: true
+    num_engines: 1
+    tensor_parallel_size: 1

@@ -1,0 +1,44 @@
+# shared base for LazyPPL statistical modelling environments
+_target_: synthstats.envs.task_runtime_env.TaskRuntimeEnv
+name: ???
+max_steps: 6
+
+task:
+  _target_: synthstats.tasks.statistical_modeling.task.StatisticalModelingTask
+  env_name: ???
+  max_steps: 6
+  language: lazyppl
+
+codec:
+  _target_: synthstats.runtime.codecs.NativeToolCallingCodec
+
+executors:
+  lazyppl:
+    _target_: synthstats.executors.lazyppl_sandbox.LazyPPLExecutor
+    compile_only: false
+
+judge:
+  _target_: synthstats.judges.composite.CompositeJudge
+  scalarization_mode: weighted_sum
+  judges:
+    - judge:
+        _target_: synthstats.judges.compilation.CompilationJudge
+      weight: 0.4
+    - judge:
+        _target_: synthstats.judges.likelihood.LikelihoodJudge
+        beta: 0.1
+        loo_gate_mode: strict
+      weight: 0.4
+    - judge:
+        _target_: synthstats.judges.llm_critic.LLMCriticJudge
+        config:
+          _target_: synthstats.judges.llm_critic.LLMCriticConfig
+          model_name: glm-4-plus
+          api_key_env_var: ZHIPUAI_API_KEY
+          language: lazyppl
+      weight: 0.2
+
+config:
+  _target_: synthstats.envs.task_runtime_env.TaskRuntimeEnvConfig
+  evaluation_seed: ${seed}
+  max_turns: 6

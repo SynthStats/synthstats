@@ -1,0 +1,5 @@
+# Qwen3.5-35B-A3B - Medium MoE model (Hybrid + Vision)
+# 35B total / 3B active params, 262K context
+name: Qwen/Qwen3.5-35B-A3B
+dtype: bfloat16
+device: ${device}

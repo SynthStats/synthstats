@@ -1,0 +1,23 @@
+# @package _global_
+# Generic SLURM cluster overrides
+# Usage: uv run python -m synthstats.cli.train +cluster=slurm
+
+# Paths (override via env for your cluster)
+data_dir: ${oc.env:DATA_DIR,./data}
+run:
+  output_dir: ${oc.env:OUTPUT_DIR,runs/${now:%Y-%m-%d_%H-%M-%S}}
+
+# WandB offline mode (no internet on compute nodes)
+logging:
+  project: synthstats
+  entity: null
+  name: null
+
+# Harbor+SkyRL trainer adjustments for GPU
+runner:
+  trainer:
+    train_batch_size: 4
+    micro_train_batch_size_per_gpu: 1
+    ckpt_interval: 100
+
+device: cuda

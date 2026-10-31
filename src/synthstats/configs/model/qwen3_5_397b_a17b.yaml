@@ -1,0 +1,5 @@
+# Qwen3.5-397B-A17B - Largest MoE model (Hybrid + Vision)
+# 397B total / 17B active params, 262K context
+name: Qwen/Qwen3.5-397B-A17B
+dtype: bfloat16
+device: ${device}

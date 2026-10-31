@@ -1,0 +1,5 @@
+# Ministral-3-3B-Reasoning-2512 - Mistral's edge reasoning model
+# 3.4B LM + 0.4B vision, 256K context, multimodal
+name: mistralai/Ministral-3-3B-Reasoning-2512
+dtype: bfloat16
+device: ${device}

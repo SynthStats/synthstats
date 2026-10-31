@@ -1,0 +1,4 @@
+backend: wandb
+project: synthstats
+entity: null
+tags: []

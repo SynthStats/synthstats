@@ -1,0 +1,12 @@
+_target_: synthstats.judges.llm_critic.LLMCriticJudge
+
+config:
+  _target_: synthstats.judges.llm_critic.LLMCriticConfig
+  model_name: openrouter/z-ai/glm-5
+  temperature: 0.2
+  num_samples: 1
+  default_score: 0.5
+  api_base: ${oc.env:SYNTHSTATS_JUDGE_API_BASE,null}
+  api_key_env_var: SYNTHSTATS_JUDGE_API_KEY
+  timeout_s: 30.0
+  max_retries: 3

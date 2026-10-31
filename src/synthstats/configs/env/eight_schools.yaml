@@ -1,0 +1,6 @@
+defaults:
+  - _statistical_modeling_base
+
+name: eight_schools
+task:
+  env_name: eight_schools

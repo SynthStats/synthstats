@@ -1,0 +1,6 @@
+defaults:
+  - _lazyppl_base
+
+name: lazyppl_dugongs
+task:
+  env_name: dugongs

@@ -1,0 +1,8 @@
+# @package _global_
+
+# Tinker-backed inference for the Harbor + SkyRL training path.
+#
+# Runtime credentials and deployment details are expected to come from the
+# surrounding SkyRL/Tinker environment rather than a SynthStats-local policy
+# implementation.
+backend: tinker

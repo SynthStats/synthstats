@@ -1,0 +1,5 @@
+loss_type: tb
+reward_floor: 1e-4
+tb_max_residual: 100.0
+logZ_init: 0.0
+logZ_lr: 0.01

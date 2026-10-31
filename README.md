@@ -1,15 +1,36 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/mark.svg">
+    <img src="assets/mark.svg" alt="SynthStats" width="140">
+  </picture>
+</p>
+
 # SynthStats
 
-LM-agent-based probabilistic program synthesis.
+SynthStats trains language-model agents to write probabilistic programs.
 
-- Website: https://synthstats.org
-- Organisation: https://github.com/SynthStats
+## Install
 
-## Public repositories
+```bash
+git clone https://github.com/SynthStats/synthstats.git
+cd synthstats
+uv sync
+```
 
-- [synthstats-schemas](https://github.com/SynthStats/synthstats-schemas)
-- [boxinggym-eval](https://github.com/SynthStats/boxinggym-eval)
-- [ppl-synth-data](https://github.com/SynthStats/ppl-synth-data)
-- [ppl-synthesis-reward-hacking](https://github.com/SynthStats/ppl-synthesis-reward-hacking)
+## Example: show the dugongs training configuration
 
-Code and updates live in the SynthStats organisation.
+```bash
+uv run synthstats-train env=dugongs --cfg job
+```
+
+## Contents
+
+| Command or file | Purpose |
+| --- | --- |
+| `synthstats-train` | Train an agent |
+| `src/synthstats/configs/train.yaml` | Default training configuration |
+| `src/synthstats/train/gfn_core.py` | Shared trainer logic |
+
+[Project](https://synthstats.org).
+
+SynthStats is distributed under the [MIT licence](LICENSE).

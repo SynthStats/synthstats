@@ -1,0 +1,6 @@
+defaults:
+  - _statistical_modeling_base
+
+name: peregrines
+task:
+  env_name: peregrines

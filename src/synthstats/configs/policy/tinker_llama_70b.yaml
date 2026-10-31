@@ -1,0 +1,9 @@
+model_name: meta-llama/Llama-3.3-70B-Instruct
+device: ${device}
+dtype: bfloat16
+allowed_backends:
+  - tinker
+
+generation:
+  max_new_tokens: 300
+  temperature: 0.7

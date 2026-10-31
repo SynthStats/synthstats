@@ -1,0 +1,12 @@
+_target_: synthstats.judges.composite.CompositeJudge
+scalarization_mode: weighted_log_product
+
+judges:
+  - judge:
+      _target_: synthstats.judges.likelihood.LikelihoodJudge
+      beta: 1.0
+      loo_gate_mode: strict
+    weight: 1.0
+  - judge:
+      _target_: synthstats.judges.formatting.FormattingJudge
+    weight: 0.1

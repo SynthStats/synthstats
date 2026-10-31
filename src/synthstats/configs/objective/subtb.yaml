@@ -1,0 +1,29 @@
+# Sub-Trajectory Balance (SubTB) objective (default objective is tb).
+loss_type: subtb
+subtb_lambda: 0.9
+tb_max_residual: 100.0
+lineage_weighting:
+  metric: n_with_verifier_reward
+  denominator_metric: n_success
+  base_weight: 1.0
+  scale: 1.0
+  min_weight: 1.0
+  max_weight: 2.0
+lineage_batching:
+  metric: n_with_verifier_reward
+  positive_first: true
+  signal_threshold: 0.0
+
+logZ_init: 0.0
+logZ_lr: 0.01
+ab_subtb_alpha: 0.1
+use_boundary_critic: false
+boundary_critic_hidden_dim: 32
+boundary_critic_loss_coef: 1.0
+
+ref_policy:
+  enabled: false
+  weight: 1.0
+  normalize_by_length: true
+
+entropy_coef: 0.01

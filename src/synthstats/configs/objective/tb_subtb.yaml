@@ -1,0 +1,18 @@
+# TB + partial SubTB research configuration; rejected by the training CLI.
+# Reference: https://arxiv.org/abs/2310.04363
+
+type: tb_subtb
+loss_type: tb
+
+logZ_init: 0.0
+logZ_lr: 0.01
+tb_max_residual: 100.0
+
+ab_subtb_alpha: 0.1
+subtb_lambda: 0.9
+log_sparse_reward: null  # auto-scaled by reward_temperature
+
+eos_token_ids: null  # auto-detect from tokenizer
+topk_for_eos: 50
+
+entropy_coef: 0.01
